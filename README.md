@@ -1,29 +1,45 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/mi1WNrHU)
-# Proyecto de C++ - [Nombre del Juego]
+# Proyecto de C++ - Ruleta Rusa
 
 ## Descripción del Proyecto
 
-Breve descripción del juego, su propósito, cómo se juega y cualquier otro detalle importante que describa la idea general del proyecto.
+El objetivo de este proyecto es desarrollar un juego de ruleta rusa utilizando 
+el lenguaje de programación C++. El juego está diseñado para dos jugadores, 
+donde uno puede ser un jugador real y el otro la CPU, o bien dos jugadores 
+humanos conectados simultáneamente
+
 
 **Por ejemplo:**
-Este proyecto consiste en un juego de aventuras donde el jugador debe explorar un mundo virtual, recoger objetos, resolver acertijos y enfrentar enemigos. El juego utiliza estructuras de control como `if`, `switch`, y bucles `while` y `for` para generar interacciones dinámicas.
+• switch: Para manejar el menú principal de acciones del jugador 
+(disparar, girar, usar objeto).
+
+• if/else: Para verificar condiciones del juego, como las vidas restantes, y 
+determinar si el juego termina.
+
+• for y funciones aleatorias (rand() o random_device): Para simular la 
+probabilidad de disparo y evitar manipulaciones, haciendo que el 
+tambor del revólver tenga una bala en una posición aleatoria.
 
 ## Equipo
 
-- **Nombre del equipo:** [Nombre del equipo]
+- **Nombre del equipo:** #Include <chatgpt>
 
 ### Integrantes del equipo
 
-1. **Nombre completo:** [Nombre del estudiante 1]  
-   **Carnet:** [Carnet del estudiante 1]
+1. **Nombre completo:** Lisandro Luis Villalobos Quintanilla 
+   **Carnet:** 00025825
 
-2. **Nombre completo:** [Nombre del estudiante 2]  
-   **Carnet:** [Carnet del estudiante 2]
+2. **Nombre completo:** Bryan Aristides Rivera Rivera
+   **Carnet:** 00165825
 
-3. **Nombre completo:** [Nombre del estudiante 3]  
-   **Carnet:** [Carnet del estudiante 3]
+3. **Nombre completo:** Ricardo Arturo Vergara Morales
+   **Carnet:** 00160625
 
-(Agregar más integrantes si es necesario)
+4. **Nombre completo:** Jose Luis Mendez Figueroa
+   **Carnet:** 00208125
+
+
+
 
 ## Instrucciones de Ejecución
 
