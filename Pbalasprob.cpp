@@ -16,7 +16,7 @@
    int bala_potenciada =2; //Definimos para disparo potenciado (daño x2).
    int posicion_actual =0; // Para definir la posicion actual del barril en la pistola.
 
-   void cargar_barril(int cantnormal, int cantpotenciada)
+   void cargar_barril(int cantnormal, int cantpotenciada);
 
 
 

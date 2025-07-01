@@ -2,8 +2,18 @@
 #include <cstdlib>
 #include <ctime>
 #include <string>
+#include <fstream>
 
 using namespace std;
+
+void registrarVictoria(string nombreGanador) {
+    ifstream entrada("registro_victorias.txt");
+    ofstream salidaTemp("temp.txt");
+    string nombre;
+    int victorias;
+    bool encontrado = false; }
+
+    
 
 struct Jugador {
     string nombre;
@@ -129,5 +139,13 @@ int main() {
     if (estaVivo(jugador1)) cout << jugador1.nombre << " gana!\n";
     else cout << jugador2.nombre << " gana!\n";
 
+
+
+    
+
     return 0;
 }
+
+
+
+   
