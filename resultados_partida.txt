@@ -1,0 +1,5 @@
+Jugador 1: luis
+Jugador 2: lisandro
+Ganador: luis
+Rondas jugadas: 0
+-----------------------------
