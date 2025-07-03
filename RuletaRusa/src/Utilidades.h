@@ -2,16 +2,17 @@
 #define UTILIDADES_H
 
 #include "Jugador.h"
+#include "TextoLento.h"
 #include <cstdlib>
 #include <iostream>
 
 using namespace std;
 
 void imprimirEstado(Jugador j1, Jugador j2) {
-    cout << "\n=======================\n";
-    cout << j1.nombre << " | Vidas: " << j1.vidas << " ❤️\n";
-    cout << j2.nombre << " | Vidas: " << j2.vidas << " ❤️\n";
-    cout << "=======================\n";
+    textoLento("\033[1;97m\n=======================\n\033[0m");
+    textoLento("\033[1;97m" + j1.nombre + " | Vidas: " + to_string(j1.vidas) + " ❤️\n\033[0m");
+    textoLento("\033[1;97m" + j2.nombre + " | Vidas: " + to_string(j2.vidas) + " ❤️\n\033[0m");
+    textoLento("\033[1;97m=======================\n\033[0m");
 }
 
 int girarTambor() {
@@ -23,54 +24,54 @@ bool disparar() {
 }
 
 void turnoJugador(Jugador &jugador, Jugador &oponente) {
-    cout << "\nEs el turno de " << jugador.nombre << "...\n";
-    cout << "1. Girar recámara\n";
-    cout << "2. Dispararte\n";
-    if (jugador.corteDisponible) cout << "3. Usar CORTE (doble daño)\n";
-    if (jugador.curacionDisponible) cout << "4. Usar CURACIÓN (+1 vida)\n";
-    cout << "Elige una opción: ";
+    textoLento("\033[1;97m\nEs el turno de " + jugador.nombre + "...\n\033[0m");
+    textoLento("\033[1;97m1. Girar recámara\n\033[0m");
+    textoLento("\033[1;97m2. Dispararte\n\033[0m");
+    if (jugador.corteDisponible) textoLento("\033[1;93m3. Usar CORTE (doble daño)\n\033[0m");
+    if (jugador.curacionDisponible) textoLento("\033[1;96m4. Usar CURACIÓN (+1 vida)\n\033[0m");
+    textoLento("\033[1;97mElige una opción: \033[0m");
 
     int opcion;
     cin >> opcion;
 
     switch(opcion) {
         case 1:
-            cout << "🔄 Giraste la recámara...\n";
+            textoLento("\033[1;97m🔄 Giraste la recámara...\n\033[0m", 50);
             break;
         case 2:
-            cout << "🔫 Te apuntaste y jalaste el gatillo...\n";
+            textoLento("\033[1;97m🔫 Te apuntaste y jalaste el gatillo...\n\033[0m", 60);
             if (disparar()) {
-                cout << "💥 BANG! Perdiste una vida.\n";
+                textoLento("\033[1;31m💥 BANG! Perdiste una vida.\033[0m\n", 90);
                 jugador.vidas -= 1;
             } else {
-                cout << "🫣 CLICK! No salió la bala.\n";
+                textoLento("\033[1;92m🫣 CLICK! No salió la bala.\033[0m\n", 80);
             }
             break;
         case 3:
             if (jugador.corteDisponible) {
-                cout << "⚔️ Usaste CORTE. El daño será doble si te toca la bala.\n";
+                textoLento("\033[1;93m⚔️ Usaste CORTE. El daño será doble si te toca la bala.\033[0m\n", 50);
                 if (disparar()) {
-                    cout << "💥 BANG! Perdiste 2 vidas.\n";
+                    textoLento("\033[1;31m💥 BANG! Perdiste 2 vidas.\033[0m\n", 90);
                     jugador.vidas -= 2;
                 } else {
-                    cout << "🫣 CLICK! Te salvaste.\n";
+                    textoLento("\033[1;92m🫣 CLICK! Te salvaste.\033[0m\n", 80);
                 }
                 jugador.corteDisponible = false;
             } else {
-                cout << "❌ No tienes CORTE disponible.\n";
+                textoLento("\033[1;90m❌ No tienes CORTE disponible.\033[0m\n");
             }
             break;
         case 4:
             if (jugador.curacionDisponible) {
-                cout << "💊 Usaste CURACIÓN. Recuperaste 1 vida.\n";
+                textoLento("\033[1;96m💊 Usaste CURACIÓN. Recuperaste 1 vida.\033[0m\n", 60);
                 jugador.vidas += 1;
                 jugador.curacionDisponible = false;
             } else {
-                cout << "❌ Ya usaste tu curación.\n";
+                textoLento("\033[1;90m❌ Ya usaste tu curación.\033[0m\n");
             }
             break;
         default:
-            cout << "Opción inválida.\n";
+            textoLento("\033[1;90m❌ Opción inválida.\033[0m\n", 70);
     }
 }
 

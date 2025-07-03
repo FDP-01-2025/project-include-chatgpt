@@ -7,7 +7,7 @@
 
 using namespace std;
 
-void textoLento(const string& texto, int velocidad = 30) {
+void textoLento(const string& texto, int velocidad = 10) {
     for (char c : texto) {
         cout << c << flush;
         Sleep(velocidad);  // Milisegundos en Windows
