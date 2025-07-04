@@ -1,6 +1,6 @@
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
+#include <cstdlib> //Para generar posiciones aleatorias del barril y para inicializar el generador de numeros aleatorios.
+#include <ctime>  // Obtener la hora actual para crear una semilla variable y que los números aleatorios no se repitan entre ejecuciones.
 #include "src/Jugador.h"
 #include "src/Utilidades.h"
 #include "src/Registro.h"
@@ -10,23 +10,23 @@ using namespace std;
 
 //--------------Programador 2------------------------------.
 // Configuracion del tambor(variables globales).
-int TAMANO_BARRIL = 6;    // Tamaño del barril de la pistola.
-int VACIO = 0;            // Valor que representa cuando no hay bala presente en la recamara.
-int BALA = 1;             // Valor que representa cuando hay bala presente en la recamara.
+int chamber_capacity = 6;    // Tamaño del barril de la pistola.
+int empty = 0;            // Valor que representa cuando no hay bala presente en la recamara.
+int bullet = 1;             // Valor que representa cuando hay bala presente en la recamara.
 
-int barril[6];            // Arreglo que representa el tambor(6 disparos).
-int posicionActual = 0;   // Posición actual del tambor (camara alineada al tambor).
+int chamber[6];            // Arreglo que representa el tambor(6 disparos).
+int current_position = 0;   // Posición actual del tambor (camara alineada al tambor).
 
 //  FUNCIÓN 1: Verifica si hay al menos una bala en el barril
-bool hayBalaEnBarril() {
-    bool encontrada = false;
-    for (int i = 0; i < TAMANO_BARRIL; i++) {
-        if (barril[i] == BALA) {
-            encontrada = true; 
+bool bulletinchamber() {
+    bool found = false;
+    for (int i = 0; i < chamber_capacity; i++) {
+        if (chamber[i] == bullet) {
+            found = true; 
         }
     }
 
-    if (encontrada) {
+    if (found) {
         return true; //Encontro una bala 
     } else {
         return false; 
@@ -35,73 +35,73 @@ bool hayBalaEnBarril() {
 
 
 // FUNCIÓN 2: Recarga la pistola solo si está vacía.
-void recargarSiVacio() {
-    if (hayBalaEnBarril()) return;  // Si ya hay bala, no hace nada.
+void reloadifempty() {
+    if (bulletinchamber()) return;  // Si ya hay bala, no hace nada.
 
     // Vacía todas las cámaras
-    for (int i = 0; i < TAMANO_BARRIL; i++) {
-        barril[i] = VACIO;
+    for (int i = 0; i < chamber_capacity; i++) {
+        chamber[i] = empty;
     }
 
     // Coloca una única bala en una posición aleatoria
-    int pos = rand() % TAMANO_BARRIL;
-    barril[pos] = BALA;
+    int pos = rand() % chamber_capacity;
+    chamber[pos] = bullet;
 }
 
 // FUNCIÓN 3: Gira el tambor y dispara
 int girarYDisparar() {
-    posicionActual = rand() % TAMANO_BARRIL;        // Gira y elige un espacio de la recamara del 1 al 6 
-    int bala = barril[posicionActual];              // Lee si hay bala
-    barril[posicionActual] = VACIO;                 // Cámara disparada se vacía
-    posicionActual = (posicionActual + 1) % TAMANO_BARRIL;  // Avanza cámara (opcional)
+    current_position = rand() % chamber_capacity;        // Gira y elige un espacio de la recamara del 1 al 6 
+    int bala = chamber[current_position];              // Lee si hay bala
+    chamber[current_position] = empty;                 // Cámara disparada se vacía
+    current_position = (current_position + 1) % chamber_capacity;  // Avanza cámara (opcional)
     return bala;  // 1 = BANG (hubo bala), 0 = CLICK (vacío)
 }
 //------------------------Programador 2------------------------.
 
 int main() {
     srand(time(0));
-    Jugador jugador1, jugador2;
-    int modo;
+    Jugador player1, player2;
+    int mode;
 
-    textoLento("🎲 Bienvenido a la Ruleta Rusa 🎲\n");
-    textoLento("1. 2 Jugadores\n");
-    textoLento("2. 1 Jugador vs CPU\n");
-    textoLento("Selecciona modo de juego: ");
-    cin >> modo;
+    textoLento("🎲 Welcome to Rusian roulette 🎲\n");
+    textoLento("1. 2 Players\n");
+    textoLento("2. 1 Player vs CPU\n");
+    textoLento("Select your game mode: ");
+    cin >> mode;
 
-    if (modo == 1) {
-        cout << "Nombre del Jugador 1: ";
-        cin >> jugador1.nombre;
-        cout << "Nombre del Jugador 2: ";
-        cin >> jugador2.nombre;
+    if (mode == 1) {
+        cout << "Enter player 1 name: ";
+        cin >> player1.nombre;
+        cout << "Enter player 2 name: ";
+        cin >> player2.nombre;
     } else {
-        cout << "Nombre del Jugador: ";
-        cin >> jugador1.nombre;
-        jugador2.nombre = "CPU";
+        cout << "Player name: ";
+        cin >> player1.nombre;
+        player2.nombre = "CPU";
     }
 
-    while (estaVivo(jugador1) && estaVivo(jugador2)) {
-        imprimirEstado(jugador1, jugador2);
-        turnoJugador(jugador1, jugador2);
-        if (!estaVivo(jugador1)) break;
+    while (estaVivo(player1) && estaVivo(player2)) {
+        imprimirEstado(player1, player2);
+        turnoJugador(player1, player2);
+        if (!estaVivo(player1)) break;
 
-        imprimirEstado(jugador1, jugador2);
-        if (jugador2.nombre == "CPU") {
-            cout << "\nTurno de la CPU...\n";
+        imprimirEstado(player1, player2);
+        if (player2.nombre == "CPU") {
+            cout << "\nCPU turn...\n";
             if (disparar()) {
-                cout << "💻 CPU se disparó... ¡y se dio!\n";
-                jugador2.vidas -= 1;
+                cout << " CPU pulled the trigger...AND GOT SHOT!\n";
+                player2.vidas -= 1;
             } else {
-                cout << "💻 CPU jaló el gatillo... nada pasó.\n";
+                cout << " CPU pulled the trigger...nothing happens.\n";
             }
         } else {
-            turnoJugador(jugador2, jugador1);
+            turnoJugador(player2, player1);
         }
     }
 
-    textoLento("\n🎉 ¡FIN DEL JUEGO! 🎉\n");
-    string ganador = estaVivo(jugador1) ? jugador1.nombre : jugador2.nombre;
-    textoLento(ganador + " gana!\n");
+    textoLento("\n🎉 GAME OVER 🎉\n");
+    string ganador = estaVivo(player1) ? player1.nombre : player2.nombre;
+    textoLento(ganador + " WINS\n");
 
     registrarVictoria(ganador);
 
