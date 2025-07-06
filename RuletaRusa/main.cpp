@@ -5,6 +5,8 @@
 #include "src/Utilidades.h"
 #include "src/Registro.h"
 #include "src/TextoLento.h"
+#include <windows.h> //Biblioteca para reproducir sonidos dentro del codigo.
+#include <mmsystem.h>
 
 using namespace std;
 
