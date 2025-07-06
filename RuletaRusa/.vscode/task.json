@@ -1,0 +1,21 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Compilar Ruleta Rusa",
+      "type": "shell",
+      "command": "g++",
+      "args": [
+        "main.cpp",
+        "-o",
+        "juego.exe",
+        "-lwinmm"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}

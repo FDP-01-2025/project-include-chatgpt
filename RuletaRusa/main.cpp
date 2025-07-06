@@ -65,6 +65,9 @@ int main() {
     SetConsoleOutputCP(CP_UTF8); // ✅  Activa codificación UTF-8 para mostrar emojis correctamente
 
     srand(time(0));
+
+    PlaySound("TheSpacexCyberpunk.wav", NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
+
     Jugador player1, player2;
     int mode;
 
@@ -136,6 +139,9 @@ int main() {
     textoLento(ganador + " WINS\n");
 
     registrarVictoria(ganador); // ✅  Registra la victoria del jugador en el historial
+
+    // Detener música cuando el juego termina
+    PlaySound(NULL, 0, 0);
 
     return 0;
 }
