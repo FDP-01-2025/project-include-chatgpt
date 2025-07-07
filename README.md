@@ -9,16 +9,6 @@ donde uno puede ser un jugador real y el otro la CPU, o bien dos jugadores
 humanos conectados simultáneamente
 
 
-**Por ejemplo:**
-• switch: Para manejar el menú principal de acciones del jugador 
-(disparar, girar, usar objeto).
-
-• if/else: Para verificar condiciones del juego, como las vidas restantes, y 
-determinar si el juego termina.
-
-• for y funciones aleatorias (rand() o random_device): Para simular la 
-probabilidad de disparo y evitar manipulaciones, haciendo que el 
-tambor del revólver tenga una bala en una posición aleatoria.
 
 ## Equipo
 
@@ -44,8 +34,14 @@ tambor del revólver tenga una bala en una posición aleatoria.
 ## Instrucciones de Ejecución
 
 1. Clona este repositorio en tu máquina local:
-   ```bash
-   git clone [URL del repositorio]
+   git clone https://github.com/FDP-01-2025/project-include-chatgpt.git
+2. Una vez clonado metete a la carpeta de ruleta rusa mediante el siguiente comando
+     cd .\project-include-chatgpt\RuletaRusa\
+3. Ahora que ya accediste a la carpeta corre el siguiente comando para crear el ejecutable
+    g++ main.cpp -o juego.exe -lwinmm     
+4. Una vez creado el ejecutable, ahora solo queda disfrutar mediante el siguiente comando
+   .\juego.exe
+5. Disfruta con tus amigos y vive un juego tenso e inolvidable :D
 
 
 ## Temas de programacion utilizados 
