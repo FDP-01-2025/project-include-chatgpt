@@ -9,6 +9,7 @@
 #include <windows.h> //Biblioteca para reproducir sonidos dentro del codigo.
 #include <mmsystem.h>
 
+
 using namespace std;
 
 //--------------Programador 2------------------------------.
@@ -19,6 +20,7 @@ int bullet = 1;             // Valor que representa cuando hay bala presente en 
 
 int chamber[6];            // Arreglo que representa el tambor(6 disparos).
 int current_position = 0;   // Posición actual del tambor (camara alineada al tambor).
+
 
 //  FUNCIÓN 1: Verifica si hay al menos una bala en el barril
 bool bulletinchamber() {
