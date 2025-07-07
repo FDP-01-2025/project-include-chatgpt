@@ -70,80 +70,80 @@ int main() {
 
     PlaySound("TheSpacexCyberpunk.wav", NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
 
-    Jugador player1, player2;
+    Player player1, player2;
     int mode;
 
-textoLento("╔══════════════════════════════════════╗\n");
-textoLento("║    🎮 RUSSIAN ROULETTE GAME 🎮       ║\n");
-textoLento("║  💀 One bullet. One survivor. 💀     ║\n");
-textoLento("╚══════════════════════════════════════╝\n");
-    textoLento("1. 2 Players\n");
-    textoLento("2. 1 Player vs CPU\n");
-    textoLento("Select your game mode: ");
+slowText("╔══════════════════════════════════════╗\n");
+slowText("║    🎮 RUSSIAN ROULETTE GAME 🎮       ║\n");
+slowText("║  💀 One bullet. One survivor. 💀     ║\n");
+slowText("╚══════════════════════════════════════╝\n");
+    slowText("1. 2 Players\n");
+    slowText("2. 1 Player vs CPU\n");
+    slowText("Select your game mode: ");
     cin >> mode;
 
     if (mode == 1) {
         cout << "Enter player 1 name: ";
-        cin >> player1.nombre;
+        cin >> player1.name;
 
         // ✅  Verifica si el usuario ya existe o lo crea
-        if (!usuarioExiste(player1.nombre)) {
-            textoLento("🆕 New player detected. Creating profile...\n");
-            crearUsuario(player1.nombre);
+        if (!userExists(player1.name)) {
+            slowText("🆕 New player detected. Creating profile...\n");
+            createUser(player1.name);
         } else {
-            textoLento("👋 Welcome back, " + player1.nombre + "!\n");
+            slowText("👋 Welcome back, " + player1.name + "!\n");
         }
 
         cout << "Enter player 2 name: ";
-        cin >> player2.nombre;
+        cin >> player2.name;
 
         // ✅  Verifica si el usuario ya existe o lo crea
-        if (!usuarioExiste(player2.nombre)) {
-            textoLento("🆕 New player detected. Creating profile...\n");
-            crearUsuario(player2.nombre);
+        if (!userExists(player2.name)) {
+            slowText("🆕 New player detected. Creating profile...\n");
+            createUser(player2.name);
         } else {
-            textoLento("👋 Welcome back, " + player2.nombre + "!\n");
+            slowText("👋 Welcome back, " + player2.name + "!\n");
         }
 
     } else {
         cout << "Player name: ";
-        cin >> player1.nombre;
+        cin >> player1.name;
 
         // ✅  Verifica si el usuario ya existe o lo crea
-        if (!usuarioExiste(player1.nombre)) {
-            textoLento("🆕 New player detected. Creating profile...\n");
-            crearUsuario(player1.nombre);
+        if (!userExists(player1.name)) {
+            slowText("🆕 New player detected. Creating profile...\n");
+            userExists(player1.name);
         } else {
-            textoLento("👋 Welcome back, " + player1.nombre + "!\n");
+            slowText("👋 Welcome back, " + player1.name + "!\n");
         }
 
-        player2.nombre = "CPU";
+        player2.name = "CPU";
     }
 
     while (estaVivo(player1) && estaVivo(player2)) {
         imprimirEstado(player1, player2);
-        turnoJugador(player1, player2);
+        playerTurn(player1, player2);
         if (!estaVivo(player1)) break;
 
         imprimirEstado(player1, player2);
-        if (player2.nombre == "CPU") {
+        if (player2.name == "CPU") {
             cout << "\nCPU turn...\n";
-            if (disparar()) {
+            if (shot()) {
                 cout << " CPU pulled the trigger...AND GOT SHOT!\n";
-                player2.vidas -= 1;
+                player2.lifes -= 1;
             } else {
                 cout << " CPU pulled the trigger...nothing happens.\n";
             }
         } else {
-            turnoJugador(player2, player1);
+            playerTurn(player2, player1);
         }
     }
 
-    textoLento("\n🎉 GAME OVER 🎉\n");
-    string ganador = estaVivo(player1) ? player1.nombre : player2.nombre;
-    textoLento(ganador + " WINS\n");
+    slowText("\n🎉 GAME OVER 🎉\n");
+    string ganador = estaVivo(player1) ? player1.name : player2.name;
+    slowText(ganador + " WINS\n");
 
-    registrarVictoria(ganador); // ✅  Registra la victoria del jugador en el historial
+    registerWin(ganador); // ✅  Registra la victoria del jugador en el historial
 
     // Detener música cuando el juego termina
     PlaySound(NULL, 0, 0);
