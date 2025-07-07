@@ -27,8 +27,8 @@ void turnoJugador(Jugador &jugador, Jugador &oponente) {
     textoLento("\033[1;97m\nIt's " + jugador.nombre + "'s turn...\n\033[0m");
     textoLento("\033[1;97m1. Spin the chamber\n\033[0m");
     textoLento("\033[1;97m2. Shoot yourself\n\033[0m");
-    if (jugador.corteDisponible) textoLento("\033[1;93m3. Use SLASH (double damage)\n\033[0m");
-    if (jugador.curacionDisponible) textoLento("\033[1;96m4. Use HEAL (+1 life)\n\033[0m");
+    if (jugador.corteDisponible) textoLento("\033[1;93m3. Use powered bullet (double damage)\n\033[0m");
+    if (jugador.curacionDisponible) textoLento("\033[1;96m4. Use HEAL (recover +1 life)\n\033[0m");
     textoLento("\033[1;97mChoose an option: \033[0m");
 
     int opcion;
@@ -49,7 +49,7 @@ void turnoJugador(Jugador &jugador, Jugador &oponente) {
             break;
         case 3:
             if (jugador.corteDisponible) {
-                textoLento("\033[1;93m⚔️ You used SLASH. Damage will be doubled if the bullet fires.\033[0m\n", 50);
+                textoLento("\033[1;93m⚔️ You charged a powered bullet into the chamber. Damage will be doubled if the bullet fires.\033[0m\n", 50);
                 if (disparar()) {
                     textoLento("\033[1;31m💥 BANG! You lost 2 lives.\033[0m\n", 90);
                     jugador.vidas -= 2;
