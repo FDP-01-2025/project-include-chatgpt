@@ -1,5 +1,5 @@
-#ifndef REGISTRO_H
-#define REGISTRO_H
+#ifndef RECORD_H
+#define RECORD_H
 
 #include <fstream>
 #include <string>
@@ -9,13 +9,13 @@
 using namespace std;
 
 // Verifica si el usuario ya existe
-bool usuarioExiste(const string& nombreBuscado) {
-    ifstream entrada("registro_victorias.txt");
-    string nombre, etiqueta;
-    int victorias;
+bool userExists(const string& searchedName) {
+    ifstream input("registro_victorias.txt");
+    string name, label;
+    int wins;
 
-    while (entrada >> nombre >> etiqueta >> victorias) {
-        if (nombre == nombreBuscado) {
+    while (input >> name >> label >> wins) {
+        if (name == searchedName) {
             return true;
         }
     }
@@ -24,35 +24,35 @@ bool usuarioExiste(const string& nombreBuscado) {
 }
 
 // Crea un nuevo usuario con 0 victorias
-void crearUsuario(const string& nombreNuevo) {
-    ofstream salida("registro_victorias.txt", ios::app);
-    salida << nombreNuevo << " victorias: 0" << endl;
+void createUser(const string& newName) {
+    ofstream output("registro_victorias.txt", ios::app);
+    output << newName << " wins: 0" << endl;
 }
 
 // Suma +1 victoria al jugador, o lo crea si no existía
-void registrarVictoria(const string& nombreGanador) {
-    ifstream entrada("registro_victorias.txt");
-    ofstream salidaTemp("temp.txt");
+void registerWin(const string& winnerName) {
+    ifstream input("registro_victorias.txt");
+    ofstream tempOutput("temp.txt");
 
-    string nombre, etiqueta;
-    int victorias;
-    bool encontrado = false;
+    string name, label;
+    int wins;
+    bool found = false;
 
-    while (entrada >> nombre >> etiqueta >> victorias) {
-        if (nombre == nombreGanador) {
-            victorias++;
-            encontrado = true;
+    while (input >> name >> label >> wins) {
+        if (name == winnerName) {
+            wins++;
+            found = true;
         }
-        salidaTemp << nombre << " victorias: " << victorias << endl;
+        tempOutput << name << " wins: " << wins << endl;
     }
 
-    entrada.close();
+    input.close();
 
-    if (!encontrado) {
-        salidaTemp << nombreGanador << " victorias: 1" << endl;
+    if (!found) {
+        tempOutput << winnerName << " wins: 1" << endl;
     }
 
-    salidaTemp.close();
+    tempOutput.close();
     remove("registro_victorias.txt");
     rename("temp.txt", "registro_victorias.txt");
 }
