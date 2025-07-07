@@ -71,7 +71,10 @@ int main() {
     Jugador player1, player2;
     int mode;
 
-    textoLento("🎲 Welcome to Rusian roulette 🎲\n");
+textoLento("╔══════════════════════════════════════╗\n");
+textoLento("║    🎮 RUSSIAN ROULETTE GAME 🎮       ║\n");
+textoLento("║  💀 One bullet. One survivor. 💀     ║\n");
+textoLento("╚══════════════════════════════════════╝\n");
     textoLento("1. 2 Players\n");
     textoLento("2. 1 Player vs CPU\n");
     textoLento("Select your game mode: ");

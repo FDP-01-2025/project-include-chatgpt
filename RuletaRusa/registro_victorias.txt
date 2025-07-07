@@ -1,3 +1,4 @@
 bryan victorias: 2
 as victorias: 1
 juan victorias: 0
+ victorias: 0
