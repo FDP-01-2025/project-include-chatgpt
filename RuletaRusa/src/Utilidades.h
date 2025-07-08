@@ -8,12 +8,15 @@
 
 using namespace std;
 
+
+
 void imprimirEstado(Jugador j1, Jugador j2) {
     textoLento("\033[1;97m\n=======================\n\033[0m");
     textoLento("\033[1;97m" + j1.nombre + " | Lives: " + to_string(j1.vidas) + " ❤️\n\033[0m");
     textoLento("\033[1;97m" + j2.nombre + " | Lives: " + to_string(j2.vidas) + " ❤️\n\033[0m");
     textoLento("\033[1;97m=======================\n\033[0m");
 }
+
 
 int girarTambor() {
     return rand() % 6;
@@ -24,6 +27,7 @@ bool disparar() {
 }
 
 void turnoJugador(Jugador &jugador, Jugador &oponente) {
+
     textoLento("\033[1;97m\nIt's " + jugador.nombre + "'s turn...\n\033[0m");
     textoLento("\033[1;97m1. Spin the chamber\n\033[0m");
     textoLento("\033[1;97m2. Shoot yourself\n\033[0m");
@@ -73,6 +77,9 @@ void turnoJugador(Jugador &jugador, Jugador &oponente) {
         default:
             textoLento("\033[1;90m❌ Invalid option.\033[0m\n", 70);
     }
+
+     
+
 }
 
 bool estaVivo(Jugador j) {
