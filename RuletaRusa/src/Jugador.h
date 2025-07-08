@@ -6,11 +6,11 @@
 
 using namespace std;
 
-struct Jugador {
-    string nombre;
-    int vidas = 3;
-    bool corteDisponible = true;
-    bool curacionDisponible = true;
+struct Player {
+    string name;
+    int lifes = 3;
+    bool poweredBullet = true;
+    bool healAvaible = true;
 };
 
 #endif

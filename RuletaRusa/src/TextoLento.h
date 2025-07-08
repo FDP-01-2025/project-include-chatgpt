@@ -7,10 +7,11 @@
 
 using namespace std;
 
-void textoLento(const string& texto, int velocidad = 10) {
+// Muestra texto con efecto de tipeo lento
+void slowText(const string& texto, int speed = 10) {
     for (char c : texto) {
         cout << c << flush;
-        Sleep(velocidad);  // Milisegundos en Windows
+        Sleep(speed);  // Milisegundos en Windows
     }
 }
 

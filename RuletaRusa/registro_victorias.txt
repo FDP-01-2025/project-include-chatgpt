@@ -5,3 +5,5 @@ Ricardo victorias: 0
 kukuuo victorias: 0
 CPU victorias: 1
 Riardo victorias: 0
+Matakuloz wins: 0
+Lis wins: 0
